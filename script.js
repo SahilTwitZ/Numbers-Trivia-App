@@ -1,7 +1,7 @@
 let getFactBtn = document.getElementById("get-fact-btn");
 let ranFactBtn = document.getElementById("get-rand-fact-btn");
 let fact = document.querySelector(".fact");
-let url = "https://numbersapi.com/";
+let url = "http://numbersapi.com/"; // Use HTTPS version
 
 let fetchFact = (num) => {
   let finalUrl = url + num;

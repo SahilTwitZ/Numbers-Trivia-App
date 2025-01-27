@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Inconsolata", serif;
+}
+
+body {
+    background-color: #5D8736;
+}
+
+.container {
+    background-color: #A9C46C;
+    width: 100vw;
+    position: absolute;
+    font-size: 16px;
+    max-width: 32em;
+    padding: 3.5rem 2.5rem;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 0.8rem;
+    box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container input,
+.container button {
+    font-size: 1.25rem;
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+}
+
+.container input {
+    width: 40%;
+    border: 1px solid #bebfbd;
+    padding: 0.6em;
+}
+
+.container button {
+    width: 55%;
+    background-color: #809D3C;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 0.7em;
+    cursor: pointer;
+}
+
+#get-rand-fact-btn {
+    width: 100%;
+    margin-top: 1em;
+}
+
+.fact {
+    background-color: #ffffff;
+    box-shadow: 0 0 1.2em rgba(0, 4, 52, 0.1);
+    margin: 3em auto 0 auto;
+    padding: 0.8em 0.4em;
+    border-radius: 0.6em;
+    border: none;
+    border-bottom: 0.6em solid #809D3C;
+    display: none;
+    max-height: 250px;
+    overflow-y: auto;
+    /* Scrollbar styling for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #809D3C #e0e0e0;
+}
+
+/* Scrollbar styling for Chrome, Safari, and Edge */
+.fact::-webkit-scrollbar {
+    width: 8px;
+}
+
+.fact::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 4px;
+}
+
+.fact::-webkit-scrollbar-thumb {
+    background: #809D3C;
+    border-radius: 4px;
+}
+
+.fact::-webkit-scrollbar-thumb:hover {
+    background: #5D8736;
+}
+
+.fact h2 {
+    font-size: 2.8em;
+    color: #181a34;
+}
+
+.fact p {
+    font-size: 1.15em;
+    font-weight: 400;
+    color: #50526b;
+    line-height: 1.8em;
+    text-align: justify;
+    margin-top: 0.8em;
+}
+
+p.msg {
+    text-align: center;
+    font-weight: 500;
+    color: #181a34;
+}
+
+/* New Portfolio Link Styles */
+.portfolio-link {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #5D8736;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.portfolio-link:hover {
+    background-color: #809D3C;
+    color: #ffffff;
+    transform: translateX(-50%) scale(1.05);
+}
+
+.portfolio-link i {
+    margin-right: 8px;
+    animation: wave 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(20deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+}
+
+/* Add these new styles to your existing CSS */
+.page-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.page-title h1 {
+    font-size: 2.5em;
+    margin: 0;
+    opacity: 0;
+    animation: titleDrop 1s ease forwards;
+}
+
+.page-title .subtitle {
+    font-size: 1.2em;
+    margin-top: 8px;
+    opacity: 0;
+    animation: titleDrop 1s ease forwards 0.3s;
+}
+
+@keyframes titleDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adjust the container top margin to make room for the title */
+.container {
+    margin-top: 20px;
+}

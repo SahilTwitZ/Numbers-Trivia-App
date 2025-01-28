@@ -3,33 +3,60 @@ let ranFactBtn = document.getElementById("get-rand-fact-btn");
 let fact = document.querySelector(".fact");
 
 let fetchFact = (num) => {
-    // Using the Numbers API with JSON endpoint and JSONP
-    let finalUrl = `http://numbersapi.com/${num}/math?json`;
+    // Using API Ninjas Number Facts API
+    const apiKey = 'XxUzAsORCcQZAT4ZXnEcEA==PDr6GpaQv4HHnM9p';
     
-    fetch(finalUrl)
-        .then((response) => response.json())
-        .then((data) => {
+    fetch(`https://api.api-ninjas.com/v1/numberfact?number=${num}`, {
+        headers: {
+            'X-Api-Key': apiKey
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
             fact.style.display = "block";
             fact.innerHTML = `<h2>${num}</h2>
-            <p>${data.text}</p>`;
+            <p>${data.fact}</p>`;
             document.querySelector(".container").append(fact);
         })
-        .catch((error) => {
-            // If the first API fails, try a backup API
-            fetch(`https://api.math.tools/numbers/nod/${num}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    fact.style.display = "block";
-                    fact.innerHTML = `<h2>${num}</h2>
-                    <p>Number ${num} has ${data.result} divisors.</p>`;
-                })
-                .catch((err) => {
-                    fact.style.display = "block";
-                    fact.innerHTML = `<p class="msg">Unable to fetch fact. Please try again later.</p>`;
-                    console.error('Error:', err);
-                });
+        .catch(error => {
+            // Fallback to generate mathematical facts if API fails
+            const mathFact = generateMathFact(num);
+            fact.style.display = "block";
+            fact.innerHTML = `<h2>${num}</h2>
+            <p>${mathFact}</p>`;
         });
 };
+
+// Fallback function to generate mathematical facts
+function generateMathFact(num) {
+    const facts = [
+        `${num} squared is ${num * num}`,
+        `The square root of ${num} is approximately ${Math.sqrt(num).toFixed(2)}`,
+        `${num} is a ${num % 2 === 0 ? 'even' : 'odd'} number`,
+        `${num} factorial is ${calculateFactorial(num)}`,
+        `${num} in binary is ${num.toString(2)}`,
+        `The factors of ${num} are: ${getFactors(num).join(', ')}`
+    ];
+    return facts[Math.floor(Math.random() * facts.length)];
+}
+
+function calculateFactorial(num) {
+    if (num === 0) return 1;
+    if (num > 20) return "too large to calculate";
+    let result = 1;
+    for (let i = 2; i <= num; i++) result *= i;
+    return result;
+}
+
+function getFactors(num) {
+    const factors = [];
+    for (let i = 1; i <= num; i++) {
+        if (num % i === 0) {
+            factors.push(i);
+        }
+    }
+    return factors;
+}
 
 let getFact = () => {
     let num = document.getElementById("num").value;

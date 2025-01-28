@@ -18,7 +18,7 @@ This project is a great way to practice using public APIs, specifically focusing
 - **HTML**: Structure and content of the page.
 - **CSS**: Styling and layout (including animations).
 - **JavaScript**: Fetching data from the Numbers API and handling the logic.
-- **API**: [Numbers API](http://numbersapi.com/)
+- **API**: [Numbers API](https://rapidapi.com/)
 
 ## How to Run the Project Locally
 
@@ -40,7 +40,7 @@ To run the project on your local machine:
 
 You can try out the live version of the project by visiting the following link:
 
-[Live Demo](https://shahil-portfolio-page.netlify.app/)
+[Live Demo](https://sahiltwitz.github.io/Numbers-Trivia-App/)
 
 ## Conclusion
 

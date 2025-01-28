@@ -1,3 +1,4 @@
+/* Global styles */
 * {
     padding: 0;
     margin: 0;
@@ -7,20 +8,60 @@
 
 body {
     background-color: #5D8736;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* Header styles */
+.page-title {
+    position: relative;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.page-title h1 {
+    font-size: 2.5em;
+    margin: 0;
+    opacity: 0;
+    animation: titleDrop 1s ease forwards;
+}
+
+.page-title .subtitle {
+    font-size: 1.2em;
+    margin-top: 8px;
+    opacity: 0;
+    animation: titleDrop 1s ease forwards 0.3s;
+}
+
+@keyframes titleDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container styles */
 .container {
     background-color: #A9C46C;
-    width: 100vw;
-    position: absolute;
-    font-size: 16px;
     max-width: 32em;
+    margin: 0 auto;
     padding: 3.5rem 2.5rem;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
     border-radius: 0.8rem;
     box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Prevent overlap with footer */
+    width: 90%;
 }
 
 .search-container {
@@ -111,12 +152,9 @@ p.msg {
     color: #181a34;
 }
 
-/* New Portfolio Link Styles */
+/* Footer styles */
 .portfolio-link {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     background-color: #ffffff;
     padding: 12px 24px;
     border-radius: 20px;
@@ -126,79 +164,35 @@ p.msg {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     animation: float 3s ease-in-out infinite;
+    text-align: center;
+    display: block;
+    margin: 0 auto 10px auto;
 }
 
 .portfolio-link:hover {
     background-color: #809D3C;
     color: #ffffff;
-    transform: translateX(-50%) scale(1.05);
+    transform: scale(1.05);
 }
 
-.portfolio-link i {
-    margin-right: 8px;
-    animation: wave 2s ease-in-out infinite;
-    display: inline-block;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0px);
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 1.5rem;
     }
-    50% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-}
 
-@keyframes wave {
-    0%, 100% {
-        transform: rotate(0deg);
+    .page-title h1 {
+        font-size: 2em;
     }
-    25% {
-        transform: rotate(20deg);
+
+    .page-title .subtitle {
+        font-size: 1em;
     }
-    75% {
-        transform: rotate(-15deg);
+
+    .fact h2 {
+        font-size: 2em;
     }
-}
 
-/* Add these new styles to your existing CSS */
-.page-title {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
-
-.page-title h1 {
-    font-size: 2.5em;
-    margin: 0;
-    opacity: 0;
-    animation: titleDrop 1s ease forwards;
-}
-
-.page-title .subtitle {
-    font-size: 1.2em;
-    margin-top: 8px;
-    opacity: 0;
-    animation: titleDrop 1s ease forwards 0.3s;
-}
-
-@keyframes titleDrop {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
+    .fact p {
+        font-size: 1em;
     }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Adjust the container top margin to make room for the title */
-.container {
-    margin-top: 20px;
 }

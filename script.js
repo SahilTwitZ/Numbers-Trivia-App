@@ -3,60 +3,26 @@ let ranFactBtn = document.getElementById("get-rand-fact-btn");
 let fact = document.querySelector(".fact");
 
 let fetchFact = (num) => {
-    // Using API Ninjas Number Facts API
-    const apiKey = 'XxUzAsORCcQZAT4ZXnEcEA==PDr6GpaQv4HHnM9p';
-    
-    fetch(`https://api.api-ninjas.com/v1/numberfact?number=${num}`, {
+    fetch(`https://numbersapi.p.rapidapi.com/${num}/math`, {
+        method: 'GET',
         headers: {
-            'X-Api-Key': apiKey
+            'X-RapidAPI-Key': '954ef36b54msh32fa03564487500p1bcce9jsnadbe72e93cde', // Sign up at rapidapi.com for free API key
+            'X-RapidAPI-Host': 'numbersapi.p.rapidapi.com'
         }
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             fact.style.display = "block";
             fact.innerHTML = `<h2>${num}</h2>
-            <p>${data.fact}</p>`;
+            <p>${data}</p>`;
             document.querySelector(".container").append(fact);
         })
         .catch(error => {
-            // Fallback to generate mathematical facts if API fails
-            const mathFact = generateMathFact(num);
+            console.error('Error:', error);
             fact.style.display = "block";
-            fact.innerHTML = `<h2>${num}</h2>
-            <p>${mathFact}</p>`;
+            fact.innerHTML = `<p class="msg">Unable to fetch fact. Please try again later.</p>`;
         });
 };
-
-// Fallback function to generate mathematical facts
-function generateMathFact(num) {
-    const facts = [
-        `${num} squared is ${num * num}`,
-        `The square root of ${num} is approximately ${Math.sqrt(num).toFixed(2)}`,
-        `${num} is a ${num % 2 === 0 ? 'even' : 'odd'} number`,
-        `${num} factorial is ${calculateFactorial(num)}`,
-        `${num} in binary is ${num.toString(2)}`,
-        `The factors of ${num} are: ${getFactors(num).join(', ')}`
-    ];
-    return facts[Math.floor(Math.random() * facts.length)];
-}
-
-function calculateFactorial(num) {
-    if (num === 0) return 1;
-    if (num > 20) return "too large to calculate";
-    let result = 1;
-    for (let i = 2; i <= num; i++) result *= i;
-    return result;
-}
-
-function getFactors(num) {
-    const factors = [];
-    for (let i = 1; i <= num; i++) {
-        if (num % i === 0) {
-            factors.push(i);
-        }
-    }
-    return factors;
-}
 
 let getFact = () => {
     let num = document.getElementById("num").value;
